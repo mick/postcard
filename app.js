@@ -74,7 +74,7 @@ app.get('/postcard/:id', function(req, res) {
     redis.get("postcard:"+req.params.id, function(err, value) {
         var data = JSON.parse(value);
         var date = new Date(data.date);
-        data.date = date.format("mmmm dS, yyyy");
+        data.date = date.toString('MMMM ,yyyy');
         res.render('postcard.ejs', { layout: false, data: JSON.parse(value)});
     });
 
