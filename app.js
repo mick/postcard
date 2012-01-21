@@ -1,7 +1,7 @@
 //var request = require('request'),
 var express = require('express');
-
 var app = express.createServer(express.logger());
+var fs = require("fs");
 
 if (process.env.REDISTOGO_URL) {
     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
@@ -35,6 +35,10 @@ app.get('/', function(req, res) {
     res.render('index.ejs', { layout: false});
 });
 
+app.get('/email', function(req, res) {
+    res.render('email.ejs', { layout: false});
+});
+
 app.post('/send', function(req, res){
 
     if(validateEmail(req.body.toaddress)){
@@ -49,7 +53,14 @@ app.post('/send', function(req, res){
 
         //Send email.
         // include the from/to  and link to the message
-    
+        var url = "http://hnlpostcard.herokuapp.com/postcard/"+urlhash
+        var email_template = fs.readFileSync("views/email.ejs", "utf-8");
+
+        email_template = email_template.replace("{{ toname }}", req.body.toname);
+        email_template = email_template.replace("{{ fromname }}", req.body.fromname);
+        var email_str = email_template.replace(/\{\{ url \}\}/g, url);
+
+        console.log("email", email_str);
         email.send({
             host: 'smtp.sendgrid.net',
             port: '587',
@@ -60,9 +71,9 @@ app.post('/send', function(req, res){
             to: req.body.toaddress,
             from: req.body.fromaddress,
             subject: 'Aloha from Honolulu!',
-            body: 'Aloha! - '+ "http://localhost:3000/postcard/"+urlhash
+            body: email_str
         }, function (err, result) {
-            console.log("sent email", err, result);
+            console.log("sent email", err);
         });
         res.send({"status":"ok"});
     }else{
@@ -74,6 +85,10 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 
 app.get('/postcard/:id', function(req, res) {
     redis.get("postcard:"+req.params.id, function(err, value) {
+        if(value == null){
+            res.redirect("/");
+            return;
+        }
         var data = JSON.parse(value);
         var date = new Date(data.date);
         data.datestring = months[date.getMonth()]+ " " + date.getDate()+", "+date.getFullYear();

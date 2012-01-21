@@ -86,7 +86,20 @@ div#content{
 .aloha .back #postcardcontent #message{
  
 }
-
+div.howto{ 
+  font-size:22px;
+  color:#fff;
+  background: rgba(30, 30, 30, 0.4);
+  position:absolute;
+  top:20px;
+  right:20px;
+  padding:20px;
+  border-radius:10px;
+}
+div.status{ 
+  font-size:36px;
+  color: rgb(255, 108, 62);
+}
 #postcardaddress{ 
   float:right;
   width:30%;

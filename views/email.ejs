@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Aloha! A message from Honolulu</title>
+    <style>
+      div#message{
+          background:url('http://hnlpostcard.herokuapp.com/static/images/email_bg.png');
+      width:577px; height:311px;
+      margin:auto;
+      
+      }
+      div#alohalogo{
+      background:url('http://hnlpostcard.herokuapp.com/static/images/email_left.png');
+      height:158px;
+      width:167px;
+      position: relative;
+      top:75px;
+      left:45px;
+      }
+      div#postcardinfo{
+      float:right;
+      width:300px;
+      text-align:center;
+      }
+      div#postcardaddress{
+      text-align:left;
+      width:250px;
+      margin:auto;
+      margin-top:30px;
+      }
+      #postcardaddress{
+      border-bottom:dashed 1px #999;
+      }
+      
+      #postcardaddress div span{ 
+      color:#fff;
+      font-style:italic;
+      font-size:0.8em;
+      font-weight:normal;
+      }
+      #postcardaddress div { 
+      margin-bottom:20px;
+      font-weight:bold;
+      font-size:1.1em;
+      color:#ffa000;
+      }
+      #postcard{
+      margin-top:10px;
+      }
+      #postcard a{
+      color:#fff;
+      font-size:12px;
+      margin-bottom:5px;
+      }
+      #postcard img{
+      margin-top:5px;
+      border:none;
+      }
+      
+      
+
+    </style>
+  </head>
+  <body>
+    <div id="content">
+
+
+      <div id="message">
+       
+        <div id="postcardinfo">
+
+          <div id="postcardaddress">
+            <div><span>TO:</span> {{ toname }} </div>
+            <div><span>FROM:</span> {{ fromname }} </div>
+          </div>
+          <div id="postcard">
+            <a href="{{ url }}">Click here to view your postcard.</a>
+            <a href="{{ url }}"><img src="http://hnlpostcard.herokuapp.com/static/images/email_small_postcard.png" /></a>
+          </div>
+        </div>
+        <div id="alohalogo"></div>
+        
+      </div>
+      
+    </div>
+  </body>
+</html>

@@ -1,10 +1,22 @@
 $(document).ready(function(){
+    $("div.howto").hide();
+    var howToTimer = 0;
+    var hideHowTo = function(){
+        $("div.howto").hide();
+        clearTimeout(howToTimer);
+        howToTimer = setTimeout(showHowTo, 5000);
+    }
+    var showHowTo = function(){
+        $("div.howto").fadeIn("normal");
+    };
 
     $("div.aloha").click(function(){
         if($(this).is(".flip")){
             $("div.aloha").removeClass("flip");
+            hideHowTo();
         }else{
             $("div.aloha").addClass("flip");
+            hideHowTo();
         }
 
     });
@@ -19,7 +31,7 @@ $(document).ready(function(){
                        };
         $.post("/send", postdata, function(data){
             if(data.status == "ok"){
-                $("#form").html("Postcard Sent!");
+                $("#form").html("<div class='status'>Postcard Sent!</div>");
             }else{
                 $("#status").html("Something went wrong, try again");
             }
