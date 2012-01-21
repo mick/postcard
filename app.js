@@ -75,7 +75,7 @@ app.get('/postcard/:id', function(req, res) {
         var data = JSON.parse(value);
         var date = new Date(data.date);
         data.date = date.toString('MMMM ,yyyy');
-        res.render('postcard.ejs', { layout: false, data: JSON.parse(value)});
+        res.render('postcard.ejs', { layout: false, data: data});
     });
 
     
