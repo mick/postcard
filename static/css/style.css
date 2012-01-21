@@ -1,0 +1,121 @@
+body {
+	background: #fff;
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+
+h1 {
+	font-size: 50px; text-transform: uppercase; color: #717171;
+	text-shadow: 0 3px 3px #333; margin: 50px 0 0 0; text-align: center;
+}
+div#content{ 
+
+
+}
+.container {
+  min-width:1300px;
+  width: 100%; height: 100%;
+
+  webkit-perspective: 1000;
+}
+
+.card {
+	width: 100%; height: 100%;
+
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 1s;
+}
+	.container.flip .card {
+		-webkit-transform: rotateY(180deg);				
+	}
+
+.face {
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+}
+
+
+.aloha {
+	float: left; position: absolute; top:0px left:0px;
+}
+	.aloha .front {
+        background: #a3a3a3 url("/static/images/postcard_front.jpg"); 
+        width:100%; height:100%; 
+	}
+.aloha .front img {
+  width:100%;
+  height:100%;
+}
+	.aloha .back {
+		width: 100%; height: 100%; 
+  background:#fff;
+		-webkit-transform: rotateY(180deg);
+	}
+.aloha .back #heading {
+  height:200px;
+}
+.aloha .back #heading #fromhonolulu{
+  height:190px;
+  width:516px;
+  background:url("/static/images/postcard_back_aloha.png");
+  float:left;
+  margin:35px 0px 20px 45px;
+}
+.aloha .back #heading #postmark{
+  height:314px;
+  width:395px;
+  background:url("/static/images/postcard_back_postage.png");
+  float:right;
+  margin:35px 45px 20px 0px;
+}
+.aloha .back #postcardcontent{ 
+  float:left;
+  width:60%;
+  padding:30px;
+  color:#777;
+  border-right: 1px solid #777;
+  line-height:1.5em;
+  font-size:1.3em;
+}
+.aloha .back #postcardcontent #date{
+  float:right;
+  margin-bottom:10px;
+  clear:both;
+} 
+.aloha .back #postcardcontent #greeting{
+  margin-bottom:20px;
+}
+.aloha .back #postcardcontent #message{
+ 
+}
+
+#postcardaddress{ 
+  float:right;
+  width:30%;
+  padding:150px 30px 30px 30px;
+}
+#postcardaddress div span{ 
+  color:#aaa;
+  font-style:italic;
+  font-size:0.6em;
+  font-weight:normal;
+}
+#postcardaddress div { 
+  margin-bottom:20px;
+  font-weight:bold;
+  font-size:1.6em;
+  color:#ffa000;
+}
+
+.spacer{ 
+  clear:both;
+}
+
+.front {
+	z-index: 10;
+}
+.container.flip .front {
+	z-index: 0;
+} 
+
+
+
