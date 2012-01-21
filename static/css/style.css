@@ -38,7 +38,6 @@ div#content{
 	float: left; position: absolute; top:0px left:0px;
 }
 	.aloha .front {
-        background: #a3a3a3 url("/static/images/postcard_front.jpg"); 
         width:100%; height:100%; 
 	}
 .aloha .front img {
