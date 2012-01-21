@@ -19,7 +19,7 @@ $(document).ready(function(){
                        };
         $.post("/send", postdata, function(data){
             if(data.status == "ok"){
-                //$("#form").html("Sent");
+                $("#form").html("Postcard Sent!");
             }else{
                 $("#status").html("Something went wrong, try again");
             }
