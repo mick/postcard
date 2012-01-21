@@ -44,7 +44,8 @@ app.post('/send', function(req, res){
                                                              "address":req.body.toaddress},
                                                        "from":{"name":req.body.fromname,
                                                                "address":req.body.fromaddress},
-                                                       "message":req.body.message}));
+                                                       "message":req.body.message,
+                                                       "date":(new Date()).getTime()}));
 
         //Send email.
         // include the from/to  and link to the message
@@ -71,6 +72,9 @@ app.post('/send', function(req, res){
 
 app.get('/postcard/:id', function(req, res) {
     redis.get("postcard:"+req.params.id, function(err, value) {
+        var data = JSON.parse(value);
+        var date = new Date(data.date);
+        data.date = dateFormat(date, "mmmm dS, yyyy");
         res.render('postcard.ejs', { layout: false, data: JSON.parse(value)});
     });
 
