@@ -71,8 +71,7 @@ app.post('/send', function(req, res){
             to: req.body.toaddress,
             from: req.body.fromaddress,
             subject: 'Aloha from Honolulu!',
-            body: email_str,
-            bodyType: "html"
+            html: email_str
         }, function (err, result) {
             console.log("sent email", err);
         });
