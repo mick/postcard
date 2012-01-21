@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "2.2.0",
-    "ejs": "0.6.1"
+    "ejs": "0.6.1",
+    "redis-url": "0.0.1",
+    "mailer": "0.6.7"
   }
 }

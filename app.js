@@ -2,19 +2,77 @@
 var express = require('express');
 
 var app = express.createServer(express.logger());
+//var redis = require('redis-url').connect(process.env.REDISTOGO_URL);
+var redis = require("redis").createClient();
+
+var email = require('mailer');
 
 app.use(express.bodyParser());
 
 app.use('/static', express.static(__dirname + '/static')); 
 
+
+var randomString = function(length) {
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    var string_length = length || 8;
+    var randomstring = '';
+    for (var i=0; i<string_length; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum,rnum+1);
+    }
+    return randomstring;
+}
+
+
 app.get('/', function(req, res) {
     res.render('index.ejs', { layout: false});
+});
+
+app.post('/send', function(req, res){
+
+    if(validateEmail(req.body.toaddress)){
+
+        var urlhash = randomString(8);
+        redis.set('postcard:'+urlhash, JSON.stringify({"to":{"name":req.body.toname,
+                                                             "address":req.body.toaddress},
+                                                       "from":{"name":req.body.fromname,
+                                                               "address":req.body.fromaddress},
+                                                       "message":req.body.message}));
+
+        //Send email.
+        // include the from/to  and link to the message
+    
+        email.send({
+            host: 'smtp.sendgrid.net',
+            port: '587',
+            authentication: 'plain',
+            username: process.env.SENDGRID_USERNAME,
+            password: process.env.SENDGRID_PASSWORD,
+            domain: 'heroku.com',
+            to: req.body.toaddress,
+            from: req.body.fromaddress,
+            subject: 'Aloha from Honolulu!',
+            body: 'Aloha! - '+ "http://localhost:3000/postcard/"+urlhash
+        }, function (err, result) {
+        });
+        res.send({"status":"ok"});
+    }else{
+        res.send({"status":"fail"});
+    };
+});
+
+app.get('/postcard/:id', function(req, res) {
+    redis.get("postcard:"+req.params.id, function(err, value) {
+        res.render('postcard.ejs', { layout: false, data: JSON.parse(value)});
+    });
+
+    
 });
 
 function validateEmail(elementValue){  
    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;  
    return emailPattern.test(elementValue);  
- } 
+} 
 
 /*app.post('/api/email', function(req, res){                
     var email = req.param("email");

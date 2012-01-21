@@ -10,9 +10,22 @@ $(document).ready(function(){
     });
 
 
-    $(window).resize(function(){
-        // change the position of the card / flip buttons..
+    $("input#submit").click(function(){
+        var postdata = {"toname":$("#toname").val(),
+                        "toaddress":$("#toaddress").val(),
+                        "fromname":$("#fromname").val(),
+                        "fromaddress":$("#fromaddress").val(),
+                        "message":$("#message").val()
+                       };
+        $.post("/send", postdata, function(data){
+            if(data.status == "ok"){
+                //$("#form").html("Sent");
+            }else{
+                $("#status").html("Something went wrong, try again");
+            }
+        }, "json");
     });
+
 
 
 });

@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Aloha! A message from Honolulu</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+  </head>
+  <body>
+    <div id="content">
+
+      <div class="container aloha">
+	    <div class="card">
+		  <div class="face front">
+            <img src="/static/images/postcard_front.jpg" /> 
+            
+		  </div>
+		  <div class="face back">
+
+            <div id="heading">
+              <div id="fromhonolulu"></div>
+              <div id="postmark"></div>
+            </div>
+            <div class="spacer"></div>
+            <div id="postcardcontent">
+              <div id="date">January 20, 2012</div>
+              <div class="spacer"></div>
+              <div id="greeting">Dear <%= data.to.name %>,</div>
+              <div id="message">
+                <%= data.message %>
+              </div>             
+            </div>
+            <div id="postcardaddress">
+              <div><span>TO:</span> <%=  data.to.name %></div>
+              <div><span>FROM:</span> <%= data.from.name %></div>
+            </div>
+
+		  </div>
+	 	</div>
+	  </div>
+
+      
+    </div>
+  </body>
+</html>
