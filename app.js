@@ -61,6 +61,7 @@ app.post('/send', function(req, res){
             subject: 'Aloha from Honolulu!',
             body: 'Aloha! - '+ "http://localhost:3000/postcard/"+urlhash
         }, function (err, result) {
+            console.log("sent email", err, result);
         });
         res.send({"status":"ok"});
     }else{
