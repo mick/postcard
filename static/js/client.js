@@ -5,11 +5,10 @@ $(document).ready(function(){
         clearTimeout(howToTimer);
         howToTimer = setTimeout(showHowTo, 5000);
     }
-    hideHowTo();
     var showHowTo = function(){
         $("div.howto").fadeIn("normal");
     };
-
+    hideHowTo();
     $("div.aloha").click(function(){
         if($(this).is(".flip")){
             $("div.aloha").removeClass("flip");
