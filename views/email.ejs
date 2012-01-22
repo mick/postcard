@@ -1,79 +1,23 @@
-
-    <style>
-      div.message{
-          background:url('http://hnlpostcard.herokuapp.com/static/images/email_bg.png');
-      width:577px; height:311px;
-      margin:auto;
-      
-      }
-      div.alohalogo{
-      background:url('http://hnlpostcard.herokuapp.com/static/images/email_left.png');
-      height:158px;
-      width:167px;
-      position: relative;
-      top:75px;
-      left:45px;
-      }
-      div.postcardinfo{
-      float:right;
-      width:300px;
-      text-align:center;
-      }
-      div.postcardaddress{
-      text-align:left;
-      width:250px;
-      margin:auto;
-      margin-top:30px;
-      }
-      .postcardaddress{
-      border-bottom:dashed 1px #999;
-      }
-      
-      .postcardaddress div span{ 
-      color:#fff;
-      font-style:italic;
-      font-size:0.8em;
-      font-weight:normal;
-      }
-      .postcardaddress div { 
-      margin-bottom:20px;
-      font-weight:bold;
-      font-size:1.1em;
-      color:#ffa000;
-      }
-      .postcard{
-      margin-top:10px;
-      }
-      .postcard a{
-      color:#fff;
-      font-size:12px;
-      margin-bottom:5px;
-      }
-      .postcard img{
-      margin-top:5px;
-      border:none;
-      }
-      
-      
-
-    </style>
     <div class='content'>
 
 
-      <div class='message'>
+      <div class='message' style='background:url('http://hnlpostcard.herokuapp.com/static/images/email_bg.png');width:577px; height:311px;margin:auto;'>
        
-        <div class='postcardinfo'>
-
-          <div class='postcardaddress'>
-            <div><span>TO:</span> {{ toname }} </div>
-            <div><span>FROM:</span> {{ fromname }} </div>
+        <div class='postcardinfo' style='float:right;width:300px;text-align:center;'>
+          <div class='postcardaddress' style='text-align:left;width:250px;margin:auto;margin-top:30px;border-bottom:dashed 1px #999;'>
+            <div style='margin-bottom:20px;font-weight:bold;font-size:1.1em;color:#ffa000;'>
+              <span style='color:#fff;font-style:italic;font-size:0.8em;font-weight:normal;'>TO:</span> {{ toname }}
+            </div>
+            <div style='margin-bottom:20px;font-weight:bold;font-size:1.1em;color:#ffa000;'>
+              <span style='color:#fff;font-style:italic;font-size:0.8em;font-weight:normal;'>FROM:</span> {{ fromname }}
+            </div>
           </div>
-          <div class='postcard'>
-            <a href='{{ url }}'>Click here to view your postcard.</a>
-            <a href='{{ url }}'><img src='http://hnlpostcard.herokuapp.com/static/images/email_small_postcard.png' /></a>
+          <div class='postcard' style='margin-top:10px;'>
+            <a href='{{ url }}' style='color:#fff;font-size:12px;margin-bottom:5px;'>Click here to view your postcard.</a>
+            <a href='{{ url }}'><img src='http://hnlpostcard.herokuapp.com/static/images/email_small_postcard.png' style='margin-top:5px;border:none;' /></a>
           </div>
         </div>
-        <div class='alohalogo'></div>
+        <div class='alohalogo' style='background:url('http://hnlpostcard.herokuapp.com/static/images/email_left.png');height:158px;width:167px;position: relative;top:75px;left:45px;'></div>
         
       </div>
       
