@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    $("div.howto").hide();
     var howToTimer = 0;
     var hideHowTo = function(){
         $("div.howto").hide();
         clearTimeout(howToTimer);
         howToTimer = setTimeout(showHowTo, 5000);
     }
+    hideHowTo();
     var showHowTo = function(){
         $("div.howto").fadeIn("normal");
     };
